@@ -1,0 +1,4 @@
+[wordpressrepo]
+name=Wordpress Repo
+baseurl=http://172.16.143.171/repo/x86_64/
+enabled=1
