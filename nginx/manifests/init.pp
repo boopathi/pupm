@@ -2,12 +2,12 @@ class nginx {
 	include nginxInstall
 	include nginxConfigure
 	include nginxStart
-	}
+}
 class nginxInstall {
   package { 'nginx':
       ensure => installed
     }
-
+}
 class nginxConfigure {
   file { '/etc/nginx/nginx.conf':
       mode => 644,
@@ -22,5 +22,5 @@ class nginxStart {
     }
 }
 class { "nginxConfigure" : require=>Class["nginxInstall"] }
-	class { "nginxStart" : require=>Class["nginxConfigure"] }
+class { "nginxStart" : require=>Class["nginxConfigure"] }
 
