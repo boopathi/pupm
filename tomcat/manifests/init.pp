@@ -2,7 +2,7 @@ class tomcat {
 	include tomcatInstall
 }
 class tomcatInstall {
-	package { 'tomcat6':
+	package { 'tomcat5':
 		ensure=>present
 	}
 }
