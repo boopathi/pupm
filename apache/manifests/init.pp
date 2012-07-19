@@ -2,9 +2,7 @@ class apache {
 	include apacheInstall
 	include apacheConfig
 	include apacheStart
-	class { "apacheConfig": require => Class["apacheInstall"] }
-	class { "apacheStart": require => Class["apacheConfig"] }
-}
+	}
 class apacheInstall {
 	package { 'httpd':
 		ensure => installed
@@ -23,4 +21,6 @@ class apacheStart {
 		ensure=>running
 	}
 }
+class { "apacheConfig": require => Class["apacheInstall"] }
+	class { "apacheStart": require => Class["apacheConfig"] }
 

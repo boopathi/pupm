@@ -2,9 +2,7 @@ class nginx {
 	include nginxInstall
 	include nginxConfigure
 	include nginxStart
-	class { "nginxConfigure" : require=>Class["nginxInstall"] }
-	class { "nginxStart" : require=>Class["nginxConfigure"] }
-}
+	}
 class nginxInstall {
   package { 'nginx':
       ensure => installed
@@ -23,3 +21,6 @@ class nginxStart {
       ensure => running
     }
 }
+class { "nginxConfigure" : require=>Class["nginxInstall"] }
+	class { "nginxStart" : require=>Class["nginxConfigure"] }
+
