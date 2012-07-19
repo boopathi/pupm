@@ -6,4 +6,4 @@ class addWordpressRepo {
 		source => 'puppet:///modules/wordpress/wordpress.repo'
 	}
 
-	
+}	
