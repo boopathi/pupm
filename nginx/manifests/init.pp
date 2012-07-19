@@ -13,7 +13,7 @@ class nginxConfigure {
       mode => 644,
       owner => root,
       group => root,
-      source => 'puppet:///modules/nginx/httpd.conf'
+      source => 'puppet:///modules/nginx/nginx.conf'
     }
 }
 class nginxStart {
