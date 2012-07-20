@@ -6,11 +6,3 @@ class tomcatInstall {
 		ensure=>present
 	}
 }
-class tomcatDependencies {
-	package { 'java':
-		ensure=>present
-	}
-}
-
-class { "tomcatInstall": require => Class["tomcatDependencies"] }
-
