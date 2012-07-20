@@ -4,8 +4,6 @@ class users {
 	#include GroupsList
 	#include UserFolderPermission
 }
-class UsersList {
-	
-	
+class UsersList {	
 }
 
