@@ -29,4 +29,3 @@ define usermod ( $uid, $groups ) {
 		groups=>$groups
 	}
 }
-

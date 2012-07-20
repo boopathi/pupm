@@ -1,8 +1,11 @@
 import "classes/*.pp"
 class users {
-	#include UsersList
+	include usersList
 	#include GroupsList
 }
-class UsersList {	
-}
 
+class usersList {	
+    add_user { "boopathi":
+        uid=>67
+    }
+}
