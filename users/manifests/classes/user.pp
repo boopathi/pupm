@@ -11,7 +11,7 @@ define add_user ( $uid, $password="puppet_password" ) {
 
             group { $username:
                     gid     => $uid,
-                    require => user[$username]
+                    require => User[$username]
             }
 
             file { "/home/$username/":
@@ -19,7 +19,7 @@ define add_user ( $uid, $password="puppet_password" ) {
                     owner   => $username,
                     group   => $username,
                     mode    => 750,
-                    require => [ user[$username], group[$username] ]
+                    require => [ User[$username], Group[$username] ]
             }
 }
 

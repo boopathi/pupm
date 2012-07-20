@@ -5,7 +5,7 @@ class users {
 }
 
 class usersList {	
-    add_user { "boopathi":
+    add_user { "user":
         uid=>1000
     }
 }
