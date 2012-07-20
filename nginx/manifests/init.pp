@@ -21,6 +21,5 @@ class nginxStart {
       ensure => running
     }
 }
-class { "nginxConfigure" : require=>Class["nginxInstall"] }
-class { "nginxStart" : require=>Class["nginxConfigure"] }
-
+Class["nginxConfigure"] -> Class["nginxInstall"]
+Class["nginxStart"] -> Class["nginxConfigure"]
