@@ -3,6 +3,7 @@ class initial {
 	include hosts
 	include users
 	include puppet_client
+    include wordpress
 }
 node 'group1_2.internal.directi.com' {
 	include initial
