@@ -15,5 +15,4 @@ class puppet_clientConfigure {
 		source=>'puppet:///modules/puppet_client/puppet.conf'
 	}
 }
-class { "puppet_clientConfigure": require => Class["puppet_clientInstall"] }
-
+Class["puppet_clientConfigure"] -> Class["puppet_clientInstall"]
