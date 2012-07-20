@@ -1,6 +1,6 @@
 class wordpress {
 	include addWordpressRepo
-    #include installWordpress
+    include installWordpress
 	}
 class addWordpressRepo {
 	file { '/etc/yum.repos.d/wordpress.repo':
