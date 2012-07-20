@@ -6,6 +6,6 @@ class users {
 
 class usersList {	
     add_user { "boopathi":
-        uid=>67
+        uid=>1000
     }
 }
