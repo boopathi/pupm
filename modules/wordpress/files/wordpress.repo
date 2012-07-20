@@ -2,3 +2,4 @@
 name=Wordpress Repo
 baseurl=http://172.16.143.171/repo/
 enabled=1
+gpgcheck=0
