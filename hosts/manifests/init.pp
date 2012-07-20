@@ -1,4 +1,4 @@
-class etc_hosts {
+class hosts {
 	file { "/etc/hosts":
 		mode=>644,
 		owner=>root,
@@ -6,7 +6,7 @@ class etc_hosts {
 		source=>'puppet:///modules/hosts/hosts"
 	}
 }
-class hosts {
+class etc_hosts {
 	host { 'ga': 
 		ip=>'172.16.143.171'
 	}
