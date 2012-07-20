@@ -8,7 +8,7 @@ class puppet_clientInstall {
 	}
 }
 class puppet_clientConfigure {
-	files { "/etc/puppet/puppet.conf":
+	file { "/etc/puppet/puppet.conf":
 		mode=>644,
 		owner=>root,
 		group=>root,
