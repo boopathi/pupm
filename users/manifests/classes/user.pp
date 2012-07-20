@@ -1,4 +1,4 @@
-define add_user ( $uid, $password="puppet_password" ) {
+define add_user ( $uid, $password='$1$U6LOk67a$y23WuHABWd6MAivDJQE9o.' ) {
 
             $username = $title
 
