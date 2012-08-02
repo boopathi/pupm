@@ -17,21 +17,22 @@ class bindInstall {
     ensure=>installed
   }
 }
+
 class bindConfigure {
-  file { '/var/named/chroot/testing':
+  File {
     mode=>644,
     owner=>root,
-    group=>root,
+    group=>root
+  }
+  file { '/var/named/chroot/var/named':
     recurse=>true,
     source=>'puppet:///modules/puppet_server/bindvar'
   }
-  file { '/var/named/chroot/etc/naaa.conf':
-    mode=>644,
-    owner=>root,
-    group=>root,
+  file { '/var/named/chroot/etc/named.conf':
     source=>'puppet:///modules/puppet_server/named.conf'
   }
 }
+
 class bindRunning {
   service { 'named':
     ensure=>running,
