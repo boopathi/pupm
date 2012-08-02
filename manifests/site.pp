@@ -21,6 +21,6 @@ node /^group1_3.internal.directi.com$/ {
 }
 
 
-node 'group1_4.internal.directi.com' {
+node 'dbm.g1.foo' {
 	include mysql
 }
