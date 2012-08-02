@@ -10,7 +10,7 @@ class apache {
     require=>Package['httpd']
   }
   service {'httpd':
-    require=>[Package['httpd'], File['/etc/httpd/conf/httpd.conf']]
+    require=>[Package['httpd'], File['/etc/httpd/conf/httpd.conf']],
     ensure=>running,
     hasstatus=>true,
     enable=>true
