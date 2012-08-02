@@ -9,3 +9,13 @@ class tomcat {
     require=>Package['tomcat5'],
   }
 }
+
+class tomcat::apacheConf {
+  file { '/etc/httpd/conf.d/tomcat.conf':
+    mode=>644,
+    user=>root,
+    group=>root,
+    source=>'puppet:///modules/tomcat/tomcat.conf',
+    require=>[ Package['httpd'], Service['httpd'] ]
+  }
+}
