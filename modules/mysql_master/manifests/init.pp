@@ -23,9 +23,9 @@ class mysql_master {
     }
 
     exec { "set_root_passwd" : 
-        unless => "/usr/bin/mysqladmin -uroot -p$root_passwd status",
-        require => Service["mysqld"],
-		command => "/usr/bin/mysqladmin -u root password $root_passwd"
+      unless => "/usr/bin/mysqladmin -uroot -p$root_passwd status",
+      require => Service["mysqld"],
+      command => "Z/usr/bin/mysqladmin -u root password $root_passwd"
     }
 
     exec { "replication_user" :
