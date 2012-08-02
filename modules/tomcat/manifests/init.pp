@@ -2,7 +2,7 @@ class tomcat {
   package { 'tomcat5':
     ensure=>installed
   }
-  service {'tomcat':
+  service {'tomcat5':
     ensure=>running,
     hasstatus=>true,
     enable=>true,
