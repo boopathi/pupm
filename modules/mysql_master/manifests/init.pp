@@ -37,12 +37,12 @@ class mysql_master {
 	exec { "create_wordpress_user_x":
 		unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
 		require => Exec["set_root_passwd"],
-		command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CREATE USER 'wordpress'@'x.g1.foo' IDENTIFIED BY 'wordpress'\"",
+		command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CREATE USER 'wordpress'@'172.16.%' IDENTIFIED BY 'wordpress'\"",
 	}
 	exec { "create_wordpress_user_y":
 		unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
 		require => Exec["set_root_passwd"],
-		command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CREATE USER 'wordpress'@'y.g1.foo' IDENTIFIED BY 'wordpress'\"",
+		command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CREATE USER 'wordpress'@'172.16.%' IDENTIFIED BY 'wordpress'\"",
 	}
      exec { "create_wordpress_user_localhost":
         unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
