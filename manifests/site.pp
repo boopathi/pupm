@@ -25,3 +25,7 @@ node /^group1_3.internal.directi.com$/ {
 node 'dbm.g1.foo' {
 	include mysql
 }
+
+node 'g1.foo' {
+  include puppet_server
+}
