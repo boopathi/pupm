@@ -38,4 +38,5 @@ node /^dbm.g1.foo$/ {
 #server1
 node /^g1.foo$/ {
   include puppet_server
+  include puppet_server::bind
 }
