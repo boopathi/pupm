@@ -20,16 +20,22 @@
 # 	include php
 # 	include nagios
 # }
-node 'x.g1.foo' {
+
+#server2
+node /^x.g1.foo$/ {
   include apache
   include tomcat
   include tomcat::apache_conf
   include php
   include wordpress
 }
-node 'dbm.g1.foo' {
-	include mysql_master
+
+#server4
+node /^dbm.g1.foo$/ {
+  include mysql_master
 }
-node 'g1.foo' {
+
+#server1
+node /^g1.foo$/ {
   include puppet_server
 }
