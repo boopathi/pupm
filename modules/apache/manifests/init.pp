@@ -6,7 +6,7 @@ class apache {
     mode=>644,
     owner=>root,
     group=>root,
-    source=>'puppet:///modules/apache/httpd.conf'
+    source=>'puppet:///modules/apache/httpd.conf',
     require=>Package['httpd']
   }
   service {'httpd':
