@@ -1,61 +1,16 @@
-class puppet_server {
-  include puppet_serverInstall
-  include bind
-}
 # Puppet server
-class puppet_serverInstall {
-	package { "puppet-server":
-		ensure=>installed
-	}
+class puppet_server {
+  package { "puppet-server":
+    ensure=>installed
+  }
+  service { 'puppetmaster':
+    ensure=>running,
+    require=>Package['puppet-server'],
+  }
 }
 
-#Version 2.0 bind config
-# class bind {
-#   include bindInstall
-#   include bindConfigure
-#   include bindRunning
-#   Class['bindRunning'] -> Class['bindConfigure']
-#   Class['bindConfigure'] -> Class['bindInstall']
-# }
-
-
-# #Bind Configurations
-# class bindInstall {
-#   package { 'bind':
-#     ensure=>installed
-#   }
-#   package {'bind-chroot':
-#     ensure=>installed,
-#     require=>Package['bind']
-#   }
-# }
-
-# class bindConfigure {
-#   File {
-#     mode=>644,
-#     owner=>root,
-#     group=>root,
-#     notify=>Service['named']
-#   }
-#   file { '/var/named/chroot//var/named':
-#     recurse=>true,
-#     source=>'puppet:///modules/puppet_server/bindvar'
-#   }
-#   file { '/var/named/chroot//etc/named.conf':
-#     source=>'puppet:///modules/puppet_server/named.conf'
-#   }
-# }
-
-# class bindRunning {
-#   service { 'named':
-#     ensure=>running,
-#     hasstatus=>true,
-#     enable=>true
-#   }
-# }
-
-# #New bind config
-class bind {
+#New bind config
+class puppet_server::bind {
   package {
     'bind': ensure=>installed;
     'bind-chroot': require=>Package['bind'];
