@@ -11,6 +11,7 @@ class tomcat {
 }
 
 class tomcat::apache_conf {
+  include apache
   file { '/etc/httpd/conf.d/tomcat.conf':
     mode=>644,
     owner=>root,
