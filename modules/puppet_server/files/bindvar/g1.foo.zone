@@ -1,0 +1,30 @@
+$ORIGIN g1.foo.
+$TTL  10
+@       IN  SOA ns.g1.foo. me.g1.foo (
+                100
+                900
+                300
+                300
+                600
+        )
+        300 IN NS ns.g1.foo.
+        300 IN  A 172.16.143.171
+
+ns 	IN 	A 	172.16.143.171
+
+; Web servers
+;Apache, Tomcat
+x	IN	A	172.16.143.172
+;Nginx, Tomcat
+y	IN	A	172.16.143.173
+
+;Database servers
+;Master
+dbm	IN	A	172.16.143.174
+;Slave
+dbs	IN	A	172.16.143.174
+
+;Mail server
+mail	IN	A	172.16.143.172
+mail	IN	MX	10	mail.g1.foo
+
