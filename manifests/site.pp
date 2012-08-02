@@ -28,7 +28,7 @@ node 'x.g1.foo' {
   include wordpress
 }
 node 'dbm.g1.foo' {
-	include mysql
+	include mysql_master
 }
 node 'g1.foo' {
   include puppet_server
