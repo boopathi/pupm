@@ -20,3 +20,8 @@ node /^group1_3.internal.directi.com$/ {
 	include php
 	include nagios
 }
+
+
+node 'group1_4.internal.directi.com' {
+	include mysql
+}
