@@ -1,0 +1,15 @@
+@  IN SOA ns.g1.foo. me.g1.foo (
+100
+900
+300
+300
+600 
+)
+
+143.16.172.in-addr.arpa. IN NS  ns.g1.foo.
+
+172  IN PTR x.g1.foo.
+;172  IN PTR mail.g1.foo.
+173  IN PTR y.g1.foo.
+174  IN PTR dbm.g1.foo.
+175  IN PTR dbs.g1.foo.
