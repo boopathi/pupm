@@ -1,8 +1,6 @@
 class puppet_server {
   include puppet_serverInstall
-  include bindInstall
-  include bindConfigure
-  include bindRunning
+  include bind
 }
 # Puppet server
 class puppet_serverInstall {
