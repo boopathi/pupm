@@ -16,6 +16,10 @@ class bindInstall {
   package { 'bind':
     ensure=>installed
   }
+  package {'bind-chroot':
+    ensure=>installed
+    require=>Package['bind']
+  }
 }
 
 class bindConfigure {
