@@ -1,7 +1,7 @@
 $ORIGIN g1.foo.
 $TTL  10
 @       IN  SOA ns.g1.foo. me.g1.foo (
-                100
+                101
                 900
                 300
                 300
@@ -25,6 +25,4 @@ dbm	IN	A	172.16.143.174
 dbs	IN	A	172.16.143.174
 
 ;Mail server
-mail	IN	A	172.16.143.172
-mail	IN	MX	10	mail.g1.foo
-
+g1.foo.	IN	MX	10	g1.foo.
