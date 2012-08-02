@@ -17,7 +17,7 @@ class bindInstall {
     ensure=>installed
   }
   package {'bind-chroot':
-    ensure=>installed
+    ensure=>installed,
     require=>Package['bind']
   }
 }
