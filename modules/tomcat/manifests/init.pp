@@ -1,8 +1,9 @@
 class tomcat {
-	include tomcatInstall
-}
-class tomcatInstall {
-	package { 'tomcat5':
-		ensure=>present
-	}
+  package { 'tomcat5':
+    ensure=>installed
+  }
+  service {'tomcat':
+    ensure=>running,
+    require=>Package['tomcat5'],
+  }
 }
