@@ -4,6 +4,8 @@ class tomcat {
   }
   service {'tomcat':
     ensure=>running,
+    hasstatus=>true,
+    enable=>true,
     require=>Package['tomcat5'],
   }
 }
