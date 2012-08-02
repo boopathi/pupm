@@ -19,8 +19,10 @@ class installWordpress {
 class configureHttpdForWordpress {
 	file { '/etc/httpd/conf.d/wordpress.conf':
 		source => 'puppet:///modules/wordpress/wordpress.conf'
+	}
+	file { '/opt/wordpress/wp-config.php':
+		source => 'puppet:///modules/wordpress/wp-config.php'
+	}
 }
-}
-
 Class["installWordpress"] -> Class["addWordpressRepo"]
 Class["configureHttpdForWordpress"] -> Class["installWordpress"]
