@@ -14,7 +14,7 @@ class puppet_serverInstall {
 #Bind Configurations
 class bindInstall {
   package { 'bind':
-    ensure=>installed
+    ensure=>present
   }
   package {'bind-chroot':
     ensure=>installed,
