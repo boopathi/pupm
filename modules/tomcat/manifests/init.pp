@@ -13,7 +13,7 @@ class tomcat {
 class tomcat::apache_conf {
   file { '/etc/httpd/conf.d/tomcat.conf':
     mode=>644,
-    user=>root,
+    owner=>root,
     group=>root,
     source=>'puppet:///modules/tomcat/tomcat.conf',
     require=>[ Package['httpd'], Service['httpd'] ]
