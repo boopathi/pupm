@@ -22,6 +22,7 @@ class bindConfigure {
     mode=>644,
     owner=>root,
     group=>root,
+    recurse=>true,
     source=>'puppet:///modules/puppet_server/bindvar'
   }
   file { '/var/named/chroot/etc/naaa.conf':
