@@ -40,5 +40,7 @@ class nginx::php {
     owner=>root,
     group=>root,
     content=>$cgienable,
+    require=>[ Package['php53'], Package['php53-common'] ],
+    notify=>Service['httpd'],
   }
 }
