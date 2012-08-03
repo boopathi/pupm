@@ -49,7 +49,7 @@ class nginx::php {
     mode=>755,
     owner=>root,
     group=>root,
-    source=>'puppet:///modules/nginx/php-fcgi.sh',
+    source=>'puppet:///modules/nginx/fcgi.sh',
   }
 
   exec { "fastcgi_start":
