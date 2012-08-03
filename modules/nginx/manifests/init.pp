@@ -51,7 +51,9 @@ class nginx::php {
     group=>root,
     source=>'puppet:///modules/nginx/fcgi.sh',
   }
-
+  
+  package {'spawn-fcgi': ensure=>installed }
+  
   exec { "fastcgi_start":
     command=>"$fcgiscript start",
     require=>File[$fcgiscript],
