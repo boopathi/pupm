@@ -41,6 +41,6 @@ class nginx::php {
     group=>root,
     content=>$cgienable,
 #    require=>[ Package['php53'], Package['php53-common'] ],
-    notify=>Service['httpd'],
+    notify=>Service['nginx'],
   }
 }
