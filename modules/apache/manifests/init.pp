@@ -22,22 +22,21 @@ class apache {
     source=>'puppet:///modules/apache/httpd.conf',
   }
   
-  define gen_vhosts (
-    $hostname = "*",
-    $portnum = "80",
-    $ServerName,
-    $DocumentRoot,
-    $Location = "",
-    $ProxyPass = ""
-    ) {
-    file { $vhosts:
-      mode=>644,
-      owner=>root,
-      group=>root,
-      require=>Package[$package],
-      ensure=>file,
-      content=>template('apache/vhosts.conf'),
-    } 
+}
+
+define apache::gen_vhosts(
+  $hostname = "*",
+  $portnum = "80",
+  $ServerName,
+  $Location = "",
+  $ProxyPass = "" )
+{
+  file { $vhosts:
+    mode=>644,
+    owner=>root,
+    group=>root,
+    require=>Package[$package],
+    ensure=>file,
+    content=>template('apache/vhosts.conf'),
   }
-  
 }

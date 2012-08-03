@@ -1,0 +1,7 @@
+<VirtualHost <%= hostname %>:<%= portnum %>>
+  ServerName <%= ServerName %>
+  <Location <%= Location %>
+    ProxyPass <%= ProxyPass %>
+    ProxyPassReverse <%= ProxyPass %>
+  </Location>
+</VirutalHost>
