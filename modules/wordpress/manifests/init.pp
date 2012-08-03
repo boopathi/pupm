@@ -11,7 +11,8 @@ class wordpress {
 
   file { '/etc/httpd/conf.d/wordpress.conf':
     source => 'puppet:///modules/wordpress/wordpress.conf',
-    require=>Package['wordpress-custom']
+    require=>Package['wordpress-custom'],
+    notify => Service["httpd"],
   }
   file { '/opt/wordpress/wp-config.php':
     require=>Package['wordpress-custom'],
