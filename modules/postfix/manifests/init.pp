@@ -15,7 +15,7 @@ class postfix {
 		ownner => root,
 		group => root,
 		source => 'puppet:///modules/postfix/dovecot.conf',
-		require=>Package['dovecot'], Package['sendmail']],
+		require=>[Package['dovecot'], Package['sendmail']],
   	}	
 	service { 'postfix':
 		ensure => running,
