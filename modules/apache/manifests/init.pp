@@ -1,45 +1,42 @@
 class apache {
-  package {'httpd':
-    ensure=>installed
+
+  $conf = "/etc/httpd/conf/httpd.conf"
+  $package = "httpd"
+  $vhosts = '/etc/httpd/conf.d/vhosts.conf'
+  
+  package { $package : ensure=>installed }
+
+  service {'httpd':
+    require=>[Package[$package], File[$conf]],
+    subscribe=>File[$conf],
+    ensure=>running,
+    hasstatus=>true,
+    enable=>true,
   }
-  file { '/etc/httpd/conf/httpd.conf':
+  
+  file { $conf:
     mode=>644,
     owner=>root,
     group=>root,
+    require=>Package[$package],
     source=>'puppet:///modules/apache/httpd.conf',
-    require=>Package['httpd']
   }
-  service {'httpd':
-    require=>[Package['httpd'], File['/etc/httpd/conf/httpd.conf']],
-    ensure=>running,
-    hasstatus=>true,
-    enable=>true
+  
+}
+
+define apache::gen_vhosts(
+  $hostname = "*",
+  $portnum = "80",
+  $ServerName,
+  $Location = "",
+  $ProxyPass = "" )
+{
+  file { $vhosts:
+    mode=>644,
+    owner=>root,
+    group=>root,
+    require=>Package[$package],
+    ensure=>file,
+    content=>template('apache/vhosts.conf'),
   }
 }
-#old
-# class apache {
-# 	include apacheInstall
-# 	include apacheConfig
-# 	include apacheStart
-# 	}
-# class apacheInstall {
-# 	package { 'httpd':
-# 		ensure => installed
-# 	}
-# }
-# class apacheConfig {
-# 	file { '/etc/httpd/conf/httpd.conf':
-# 		mode=>644,
-# 		owner=>root,
-# 		group=>root,
-# 		source=>'puppet:///modules/apache/httpd.conf'
-# 	}
-# }
-# class apacheStart {
-# 	service { 'httpd':
-# 		ensure=>running
-# 	}
-# }
-# class { "apacheConfig": require => Class["apacheInstall"] }
-# 	class { "apacheStart": require => Class["apacheConfig"] }
-
