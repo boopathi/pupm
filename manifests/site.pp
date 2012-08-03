@@ -17,8 +17,9 @@ node /^x.g1.foo$/ {
 #server3
 node /^y.g1.foo$/ {
   include nginx
+  include nginx::php
   include php
-  include fastcgi
+  #include fastcgi
 }
 
 #server4
