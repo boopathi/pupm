@@ -1,18 +1,18 @@
 class postfix {
 	package { 'postfix': ensure => installed }
 	package { 'dovecot': ensure => installed }
-	package { 'sendmail': ensure => absent }
+	package { ['sendmail', 'sendmail-cf'] : ensure => absent }
 
 	file { '/etc/postfix/main.cf':
 		mode => 644,
-		ownner => root,
+		owner => root,
 		group => root,
 		source => 'puppet:///modules/postfix/main.cf',
 		require=>[Package['postfix'], Package['sendmail']],
   	}
 	file { '/etc/dovecot.conf':
 		mode => 644,
-		ownner => root,
+		owner => root,
 		group => root,
 		source => 'puppet:///modules/postfix/dovecot.conf',
 		require=>[Package['dovecot'], Package['sendmail']],
