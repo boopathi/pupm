@@ -42,7 +42,6 @@ class nginx::php {
     owner=>root,
     group=>root,
     content=>$cgienable,
-#    require=>[ Package['php53'], Package['php53-common'] ],
     notify=>Service['nginx'],
   }
   file { $fcgiscript:
@@ -50,12 +49,17 @@ class nginx::php {
     owner=>root,
     group=>root,
     source=>'puppet:///modules/nginx/fcgi.sh',
+    notify=> Service['php-fcgi']
   }
   
   package {'spawn-fcgi': ensure=>installed }
-  
-  exec { "fastcgi_start":
-    command=>"$fcgiscript start",
+
+  exec { "fastcgi_service":
+    command=>"chkconfig php-fcgi --add",
     require=>File[$fcgiscript],
+  }
+  service {'php-fcgi':
+    ensure=>running,
+    require=>Exec['fastcgi_service'],
   }
 }
