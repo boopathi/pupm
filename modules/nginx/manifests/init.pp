@@ -31,3 +31,14 @@ class nginx {
     require=>File[$conf],
   }
 }
+class nginx::php {
+  $phpini = "/etc/php.d/php_nginx.ini"
+  $cgienable = "cgi.fix_pathinfo=0"
+  
+  file { $phpini:
+    mode=>644,
+    owner=>root,
+    group=>root,
+    content=>$cgienable,
+  }
+}
