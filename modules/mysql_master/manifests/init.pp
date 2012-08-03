@@ -22,10 +22,13 @@ class mysql_master {
         enable => true,
         require => File[$conf],
     }
-
+    exec { 'mysql_install_db':
+      command => '/usr/bin/mysql_install_db',
+      require => Package['mysql-server'],
+    }
     exec { "set_root_passwd" : 
       unless => "/usr/bin/mysqladmin -uroot -p$root_passwd status",
-      require => Service["mysqld"],
+      require => [ Service["mysqld"], Exec['mysql_install_db'] ],
       command => "/usr/bin/mysqladmin -u root password $root_passwd"
     }
 
