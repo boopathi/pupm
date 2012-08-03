@@ -61,6 +61,5 @@ class nginx::php {
   }
   service {'php-fcgi':
     ensure=>running,
-    require=>Exec['fastcgi_service'],
   }
 }
