@@ -1,4 +1,7 @@
 # Puppet server
+
+import "cron"
+
 class puppet_server {
   package { "puppet-server":
     ensure=>installed

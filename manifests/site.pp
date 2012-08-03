@@ -3,6 +3,7 @@ node /^g1.foo$/ {
   include postfix
   include puppet_server
   include puppet_server::bind
+  include puppet_server::cron
 }
 
 #server2
