@@ -1,25 +1,31 @@
 class nginx {
-	include nginxInstall
-	include nginxConfigure
-	include nginxStart
+  $repofile = "/etc/yum.repos.d/nginx.repo"
+  $conf = "/etc/nginx/nginx.conf"
+
+  $package = "nginx"
+
+  file { $repofile:
+    owner=>root,
+    group=>root,
+    mode=>644,
+    source=>'puppet:///modules/nginx/nginx.repo',
+  }
+  
+  package { $package:
+    ensure=>installed,
+    require=>File[$repofile],
+  }
+
+  file { $conf:
+    owner=>root,
+    group=>root,
+    mode=>644,
+    source=>'puppet:///modules/nginx/nginx.conf',
+    require=>Package[$package],
+    notify=>Service['nginx'],
+  }
+  service { 'nginx':
+    ensure=>running,
+    require=>File[$conf],
+  }
 }
-class nginxInstall {
-  package { 'nginx':
-      ensure => installed
-    }
-}
-class nginxConfigure {
-  file { '/etc/nginx/nginx.conf':
-      mode => 644,
-      owner => root,
-      group => root,
-      source => 'puppet:///modules/nginx/nginx.conf'
-    }
-}
-class nginxStart {
-  service { 'nginx' :
-      ensure => running
-    }
-}
-Class["nginxConfigure"] -> Class["nginxInstall"]
-Class["nginxStart"] -> Class["nginxConfigure"]
