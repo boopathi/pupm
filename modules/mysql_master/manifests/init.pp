@@ -59,7 +59,7 @@ class mysql_master {
   }
   
   exec { "create_wordpress_user":
-    unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
+  #  unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
     require => Exec["create_wordpress_database"],
     command => "/usr/bin/mysql -uroot -p$root_passwd -e \" $create_user_sql $grant_user_sql \"",
   }
