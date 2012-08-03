@@ -8,7 +8,7 @@ class apache {
 
   service {'httpd':
     require=>[Package[$package], File[$conf]],
-    subscribe=>File[$conf]
+    subscribe=>File[$conf],
     ensure=>running,
     hasstatus=>true,
     enable=>true,
