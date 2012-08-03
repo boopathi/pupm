@@ -12,7 +12,7 @@ class mysql_slave {
 
     file { $conf :
         source => "puppet:///modules/mysql_master/my.cnf",
-        require => Package[$mysql-server]
+        require => Package[mysql-server],
     }
 
     service { "mysqld" :
