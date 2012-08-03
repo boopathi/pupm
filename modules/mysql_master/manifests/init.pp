@@ -1,3 +1,13 @@
+class mysql {
+  package { 'mysql-server': ensure=>installed }
+  package { 'mysql': ensure=>installed }
+}
+class mysql::master inherits mysql {
+  
+}
+class mysql::slave inherits mysql {
+
+}
 class mysql_master {
 	$root_passwd = 'root'
 	$wordpress_passwd = 'wordpress'
