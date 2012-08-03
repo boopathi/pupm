@@ -17,9 +17,13 @@ class mysql_slave {
     service { "mysqld" :
         ensure => running,
         enable => true,
+        hasstatus=>true,
         require => File[$conf],
     }
-
+    exec { 'mysql_install_db':
+          command => '/usr/bin/mysql_install_db',
+          require => Package['mysql-server'],
+    }   
     exec { "set_root_passwd" : 
       unless => "/usr/bin/mysqladmin -uroot -p$root_passwd status",
       require => Service["mysqld"],
