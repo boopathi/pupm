@@ -34,6 +34,8 @@ class nginx {
 class nginx::php {
   $phpini = "/etc/php.d/php_nginx.ini"
   $cgienable = "cgi.fix_pathinfo=0"
+
+  $fcgiscript = "/etc/init.d/php-fcgi"
   
   file { $phpini:
     mode=>644,
@@ -42,5 +44,16 @@ class nginx::php {
     content=>$cgienable,
 #    require=>[ Package['php53'], Package['php53-common'] ],
     notify=>Service['nginx'],
+  }
+  file { $fcgiscript:
+    mode=>755,
+    owner=>root,
+    group=>root,
+    source=>'puppet:///modules/nginx/php-fcgi.sh',
+  }
+
+  exec { "fastcgi_start":
+    command=>"$fcgiscript start",
+    require=>File[$fcgiscript],
   }
 }
