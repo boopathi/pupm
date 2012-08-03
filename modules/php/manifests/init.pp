@@ -5,29 +5,12 @@ class php {
 
 class phpRemoveUnwanted
 {
-    package {"php":
-        ensure => absent;
-    }
-    package {"php-cli":
-        ensure => absent;
-    }
-    package {"php-common":
-        ensure => absent;
-    }
-    package {"php-ldap":
-        ensure => absent;
-    }
+  package { ['php', 'php-cli', 'php-common','php-ldap']: ensure=>absent }
 }
 
 class phpInstall {
-    package {"php53":
-        ensure => installed
-    }
-    package {"php53-common":
-        ensure => installed
-    }
-    package {"php53-mysql":
-        ensure => installed,
-        notify => Service["httpd"],
-    }
+  package {
+    ['php53', 'php53-common', 'php53-mysql']: ensure=>installed;
+    'php53-mysql': notify=>Service['httpd']
+  }
 }
