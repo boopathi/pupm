@@ -55,7 +55,7 @@ class nginx::php {
   package {'spawn-fcgi': ensure=>installed }
 
   exec { "fastcgi_service":
-    command=>"chkconfig php-fcgi --add",
+    command=>"/sbin/chkconfig php-fcgi --add",
     require=>File[$fcgiscript],
   }
   service {'php-fcgi':
