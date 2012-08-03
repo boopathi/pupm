@@ -32,7 +32,7 @@ class mysql_slave {
 
     exec { "set_master" :
         require => Exec["set_root_passwd"],
-        command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CHANGE MASTER TO MASTER_HOST=$master, MASTER_USER=$repl_user, MASTER_PASSWORD=$repl_passwd\""
+        command => "/usr/bin/mysql -uroot -p$root_passwd -e \"CHANGE MASTER TO MASTER_HOST='$master', MASTER_USER='$repl_user', MASTER_PASSWORD='$repl_passwd'\""
     }
     exec { "start_slave" :
         require => Exec["set_master"],
