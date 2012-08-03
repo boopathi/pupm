@@ -19,5 +19,4 @@ class phpInstall {
     } else {
     package { 'php53-mysql': ensure=>installed }
     }
-}
-~                    
+}                   
