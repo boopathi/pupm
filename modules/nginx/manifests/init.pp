@@ -26,6 +26,8 @@ class nginx {
   }
   service { 'nginx':
     ensure=>running,
+    hasstatus=>true,
+    enable=>true,
     require=>File[$conf],
   }
 }
