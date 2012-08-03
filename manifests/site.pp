@@ -30,6 +30,13 @@ node /^x.g1.foo$/ {
   include wordpress
 }
 
+#server3
+node /^y.g1.foo$/ {
+  include nginx
+  include php
+  include fastcgi
+}
+
 #server4
 node /^dbm.g1.foo$/ {
   include mysql_master
