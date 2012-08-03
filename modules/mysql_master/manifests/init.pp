@@ -18,6 +18,7 @@ class mysql_master {
 
     service { "mysqld" :
         ensure => running,
+        hasstatus=>true,
         enable => true,
         require => File[$conf],
     }
