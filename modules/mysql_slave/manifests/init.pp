@@ -3,7 +3,6 @@ class mysql_slave {
     $repl_passwd = 'slave'
     $repl_user = 'repl'
     $master = 'dbm.g1.foo'
-    $repl_passwd = 'slave'
 
     $conf = "/etc/my.cnf"
 
