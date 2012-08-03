@@ -36,7 +36,7 @@ class apache {
       group=>root,
       require=>Package[$package],
       ensure=>file,
-      content=>template(apache/vhosts.conf),
+      content=>template('apache/vhosts.conf'),
     } 
   }
   
