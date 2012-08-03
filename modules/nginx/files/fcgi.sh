@@ -1,97 +1,75 @@
 #!/bin/sh
 #
-# php-fastcgi - Use PHP as a FastCGI process via nginx.
+# php-cgi - php-fastcgi swaping via  spawn-fcgi
 #
-# chkconfig: - 85 15
-# description: Use PHP as a FastCGI process via nginx.
-# processname: php-fastcgi
-# pidfile: /var/run/php-fastcgi.pid
-
+# chkconfig:   - 85 15
+# description:  Run php-cgi as app server
+# processname: php-cgi
+# config:      /etc/sysconfig/phpfastcgi (defaults RH style)
+# pidfile:     /var/run/php_cgi.pid
+# Note: See how to use this script :
+# http://www.cyberciti.biz/faq/rhel-fedora-install-configure-nginx-php5/
 # Source function library.
 . /etc/rc.d/init.d/functions
-
+ 
 # Source networking configuration.
 . /etc/sysconfig/network
-
+ 
 # Check that networking is up.
 [ "$NETWORKING" = "no" ] && exit 0
-
-phpfastcgi="/usr/bin/php-fastcgi"
-prog=$(basename php-cgi)
-
-lockfile=/var/lock/subsys/php-fastcgi
-
+ 
+spawnfcgi="/usr/bin/spawn-fcgi"
+php_cgi="/usr/bin/php-cgi"
+prog=$(basename $php_cgi)
+server_ip=127.0.0.1
+server_port=9000
+server_user=nginx
+server_group=nginx
+server_childs=5
+pidfile="/var/run/php_cgi.pid"
+ 
+# do not edit, put changes in /etc/sysconfig/phpfastcgi
+[ -f /etc/sysconfig/phpfastcgi ] && . /etc/sysconfig/phpfastcgi
+ 
 start() {
-    [ -x $phpfastcgi ] || exit 5
+    [ -x $php_cgi ] || exit 1
+    [ -x $spawnfcgi ] || exit 2
     echo -n $"Starting $prog: "
-    daemon $phpfastcgi
+    daemon $spawnfcgi -a ${server_ip} -p ${server_port} -u ${server_user} -g ${server_group} -P ${pidfile} -C ${server_childs} -f ${php_cgi}
     retval=$?
     echo
-    [ $retval -eq 0 ] && touch $lockfile
     return $retval
 }
-
+ 
 stop() {
     echo -n $"Stopping $prog: "
-    killproc $prog -Q
+    killproc -p ${pidfile} $prog -QUIT
     retval=$?
     echo
-    [ $retval -eq 0 ] && rm -f $lockfile
+    [ -f ${pidfile} ] && /bin/rm -f ${pidfile}
     return $retval
 }
-
-restart() {
-    configtest || return $?
-    stop
-    start
+ 
+restart(){
+	stop
+	sleep 2
+	start
 }
-
-reload() {
-    configtest || return $?
-    echo -n $"Reloading $prog: "
-    killproc $prog -HUP
-    RETVAL=$?
-    echo
+ 
+rh_status(){
+	status -p ${pidfile} $prog
 }
-
-force_reload() {
-    restart
-}
-
-rh_status() {
-    status $prog
-}
-
-rh_status_q() {
-    rh_status >/dev/null 2>&1
-}
-
+ 
 case "$1" in
     start)
-        rh_status_q && exit 0
-        $1
-        ;;
+        start;;
     stop)
-        rh_status_q || exit 0
-        $1
-        ;;
-    restart|configtest)
-        $1
-        ;;
-    reload)
-        rh_status_q || exit 7
-        $1
-        ;;
-    force-reload)
-        force_reload
-        ;;
+        stop;;
+    restart)
+        restart;;
     status)
-        rh_status
-        ;;
-    condrestart|try-restart)
-        rh_status_q || exit 0
-        ;;
+        rh_status;;
     *)
-        echo $"Usage: $0 {start|stop|status|restart}"
-        exit 2
+        echo $"Usage: $0 {start|stop|restart|status}"
+        exit 3
 esac
