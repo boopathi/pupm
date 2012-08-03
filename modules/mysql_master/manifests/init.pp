@@ -8,8 +8,8 @@ class mysql_master {
   $package = "mysql-server"
   $conf = "/etc/my.cnf"
 
-  $create_user_sql = "CREATE USER 'wordpress'@'172.16.%' IDENTIFIED BY 'wordpress';"
-  $grant_user_sql = "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'172.16.%';"
+  # $create_user_sql = "" #"CREATE USER 'wordpress'@'172.16.%' IDENTIFIED BY 'wordpress';"
+  $create_grant_user_sql = "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'172.16.%' IDENTIFIED BY 'wordpress';"
   
   package { $package: ensure => installed }
   package { "mysql": ensure => installed }
@@ -61,7 +61,7 @@ class mysql_master {
   exec { "create_wordpress_user":
   #  unless => "/usr/bin/mysqladmin -uwordpress -p$wordpress_passwd status",
     require => Exec["create_wordpress_database"],
-    command => "/usr/bin/mysql -uroot -p$root_passwd -e \" $create_user_sql $grant_user_sql \"",
+    command => "/usr/bin/mysql -uroot -p$root_passwd -e \" $create_grant_user_sql \"",
   }
   
   # exec { "restart_mysqld" :
