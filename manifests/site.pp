@@ -47,3 +47,7 @@ node /^g1.foo$/ {
   include puppet_server
   include puppet_server::bind
 }
+
+node /^dbs.g1.foo$/ {
+  include mysql_slave
+}

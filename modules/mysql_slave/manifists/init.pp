@@ -35,5 +35,4 @@ class mysql_slave {
         require => Exec["set_master"],
         command => "/usr/bin/mysql -uroot -p$root_passwd -e \"start slave\""
     }
-
 }
