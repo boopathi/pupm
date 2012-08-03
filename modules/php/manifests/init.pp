@@ -16,7 +16,7 @@ class phpInstall {
     package { 'php53-mysql': ensure=>installed, notify=>Service['httpd'] }
     } elsif defined ( Service['nginx'] ) {
     package { 'php53-mysql': ensure=>installed, notify=>Service['nginx'] }
-    package { 'php-fpm': ensure=>installed }
+    #package { 'php-fpm': ensure=>installed }
     } else {
     package { 'php53-mysql': ensure=>installed }
     }
