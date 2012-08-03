@@ -27,6 +27,7 @@ class phpInstall {
         ensure => installed
     }
     package {"php53-mysql":
-        ensure => installed
+        ensure => installed,
+        notify => Service["httpd"],
     }
 }
