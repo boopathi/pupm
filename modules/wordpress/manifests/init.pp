@@ -11,7 +11,7 @@ class wordpress {
 
   service {'httpd':
     ensure => running,
-  },
+  }
 
   file { '/etc/httpd/conf.d/wordpress.conf':
     source => 'puppet:///modules/wordpress/wordpress.conf',
