@@ -9,14 +9,14 @@ class wordpress {
     require=>File['/etc/yum.repos.d/wordpress.repo']
   }
 
-  service {'httpd':
+  service {'httpdRestart':
     ensure => running,
   }
 
   file { '/etc/httpd/conf.d/wordpress.conf':
     source => 'puppet:///modules/wordpress/wordpress.conf',
     require=>Package['wordpress-custom'],
-    notify => Service["httpd"],
+    notify => Service["httpdRestart"],
   }
   file { '/opt/wordpress/wp-config.php':
     require=>Package['wordpress-custom'],
