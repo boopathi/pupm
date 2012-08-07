@@ -8,6 +8,16 @@ class tomcat {
     enable=>true,
     require=>Package['tomcat5'],
   }
+  package { 'sample-app-g1':
+    ensure=>installed,
+    require=>File['/etc/yum.repos.d/wordpress.repo']
+    }
+
+  file { '/etc/yum.repos.d/wordpress.repo':
+       source => 'puppet:///modules/wordpress/wordpress.repo',
+       require=>Service['tomcat5']
+       }
+
 }
 
 class tomcat::apache_conf {
