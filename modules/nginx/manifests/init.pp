@@ -52,7 +52,9 @@ class nginx::php {
     notify=> Service['php-fcgi']
   }
   
-  package {'spawn-fcgi': ensure=>installed }
+  package {'spawn-fcgi':
+    ensure=>installed,
+  }
 
   exec { "fastcgi_service":
     unless=>"/sbin/chkconfig --list | grep php-fcgi > /dev/null",
@@ -61,5 +63,6 @@ class nginx::php {
   }
   service {'php-fcgi':
     ensure=>running,
+    require=>Exec['fastcgi_service'],
   }
 }
