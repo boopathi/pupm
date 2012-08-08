@@ -1,4 +1,4 @@
-class wordpress {
+class cluster {
   $repofile = '/etc/yum.repos.d/pacemaker.repo'
   $haconf = '/etc/ha.d/ha.cf'
   $authkeys = '/etc/ha.d/authkeys'
