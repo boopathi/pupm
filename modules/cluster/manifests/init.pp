@@ -2,7 +2,7 @@ class cluster {
   $repofile = '/etc/yum.repos.d/pacemaker.repo'
   $haconf = '/etc/ha.d/ha.cf'
   $authkeys = '/etc/ha.d/authkeys'
-  $hosts = ;'/etc/hosts'
+  $hosts = '/etc/hosts'
   
   #one
   file {
@@ -44,3 +44,7 @@ class cluster {
   }
   
 }
+
+#class cluster::apache extends cluster {
+#  
+#}
