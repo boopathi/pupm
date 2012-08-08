@@ -2,17 +2,21 @@ class wordpress {
   $repofile = '/etc/yum.repos.d/pacemaker.repo'
   $haconf = '/etc/ha.d/ha.cf'
   $authkeys = '/etc/ha.d/authkeys'
-
+  $hosts = ;'/etc/hosts'
+  
   #one
-  file { $repofile
-    source => 'puppet:///modules/cluster/pacemaker.repo'
+  file {
+    $repofile:
+      source => 'puppet:///modules/cluster/pacemaker.repo';
+    $hosts:
+      source => 'puppet:///modules/cluster/hosts';
   }
 
   #install required packages
   service {
     ['pacemaker', 'corosync', 'heartbeat']:
       ensure=>installed,
-      require=>File[$repofile],
+      require=> [ File[$repofile], File[$hosts] ],
   }
 
   #copy authkeys and ha.cf
