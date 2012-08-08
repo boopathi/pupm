@@ -34,7 +34,7 @@ class cluster {
 
   #disable selinux
   exec { 'disable_selinux':
-    command => 'echo 0 > /selinux/enforce'
+    command => '/bin/echo 0 > /selinux/enforce'
   }
 
   #start the service
