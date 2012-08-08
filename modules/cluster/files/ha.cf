@@ -1,0 +1,16 @@
+autojoin none
+ucast eth0 172.16.143.171
+ucast eth0 172.16.143.172
+ucast eth0 172.16.143.173
+ucast eth0 172.16.143.174
+ucast eth0 172.16.143.175
+warntime 5
+deadtime 15
+initdead 60
+keepalive 2
+node g1.foo
+node x.g1.foo
+node y.g1.foo
+node dbs.g1.foo
+node dbm.g1.foo
+crm respawn

@@ -1,0 +1,6 @@
+[clusterlabs]
+name=High Availability/Clustering server technologies (epel-5)
+baseurl=http://www.clusterlabs.org/rpm/epel-5
+type=rpm-md
+gpgcheck=0
+enabled=1
