@@ -6,11 +6,11 @@
 127.0.0.1	localhost.localdomain	localhost group1
 ::1		localhost.localdomain	localhost
 
-172.16.143.171	ga
-172.16.143.172	gb
-172.16.143.173 	gc
-172.16.143.174	gd
-172.16.143.175	ge
+172.16.143.171	ga g1.foo
+172.16.143.172	gb x.g1.foo
+172.16.143.173 	gc y.g1.foo
+172.16.143.174	gd dbm.g1.foo
+172.16.143.175	ge dbs.g1.foo 
 
 # End of file
 
