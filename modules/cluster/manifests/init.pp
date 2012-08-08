@@ -22,14 +22,14 @@ class cluster {
   #copy authkeys and ha.cf
   file {
     $haconf :
-      require=>[Service['pacemaker'], Server['corosync'], Service['heartbeat']],
+      require=>[ Package['pacemaker'], Package['corosync'], Package['heartbeat']],
       source=>'puppet:///modules/cluster/ha.cf' ;
     $authkeys :
       source=>'puppet:///modules/cluster/authkeys',
-      require=>[Package['pacemaker'], Package['corosync'], Package['heartbeat']],
+      require=>[ Package['pacemaker'], Package['corosync'], Package['heartbeat'] ],
       mode=>600,
       owner=>root,
-      group=>root,
+      group=>root
   }
 
   #disable selinux
