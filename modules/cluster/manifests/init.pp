@@ -13,7 +13,7 @@ class cluster {
   }
 
   #install required packages
-  service {
+  package {
     ['pacemaker', 'corosync', 'heartbeat']:
       ensure=>installed,
       require=> [ File[$repofile], File[$hosts] ],
@@ -26,7 +26,7 @@ class cluster {
       source=>'puppet:///modules/cluster/ha.cf' ;
     $authkeys :
       source=>'puppet:///modules/cluster/authkeys',
-      require=>[Service['pacemaker'], Server['corosync'], Service['heartbeat']],
+      require=>[Package['pacemaker'], Package['corosync'], Package['heartbeat']],
       mode=>600,
       owner=>root,
       group=>root,
