@@ -1,4 +1,4 @@
-node /g1.foo$/ {
+node /*.g1.foo$/ {
   include cluster
 }
 
